@@ -1,38 +1,102 @@
-# Robotic Path Planning by PSO
+# 🤖 PSO-RobotPathFinder
 
-Compact Python project that finds collision‑free, length‑efficient cubic‑spline paths in 2D environments using Particle Swarm Optimization (PSO). Includes a matplotlib desktop demo and an interactive Streamlit UI for parameter tuning and visualization.
+![Project Status](https://img.shields.io/badge/status-active-success.svg)
+![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-## Features
-- Real-valued PSO optimizer for continuous control points.
-- Spline-based path representation (cubic splines).
-- 2D environment model with circular obstacles and robot radius handling.
-- Cost model combining path length and collision/violation penalties.
-- Live plotting utilities (matplotlib) and an interactive Streamlit app.
+## 📖 Overview
 
-## Repository structure
-- `main.py` — Desktop demo: runs PSO and renders matplotlib updates.
-- `streamlit.py` — Interactive Streamlit application for parameter tuning, obstacle editing and live visualization.
-- `pso.py` — Particle Swarm Optimization implementation and callback support.
-- `path_planning/`
-  - `__init__.py` — Package exports.
-  - `environment.py` — Environment and obstacle models (`Environment`, `Obstacle`).
-  - `solution.py` — Spline path class (`SplinePath`) and utilities.
-  - `cost.py` — Cost function and factory (`PathPlanningCost`, `EnvCostFunction`).
-  - `plots.py` — Plotting helpers (`plot_environment`, `plot_path`, `update_path`).
+**PSO-RobotPathFinder** is an intelligent navigation framework designed to solve complex robotic path planning challenges using **Particle Swarm Optimization (PSO)**. 
 
-## Quick start (Windows)
-1. Clone the repo and open a terminal in the project folder
-2. Install required packages:
-   ```bash
-     pip install numpy matplotlib streamlit
-4. Run the interactive Streamlit app:
-    ```bash
-    streamlit run streamlit.py
+This project goes beyond simple A* or Dijkstra implementations by using evolutionary algorithms to generate **continuous, smooth, and kinematically feasible cubic spline paths**. It effectively balances the trade-off between path shortness and safety margins, ensuring robots can navigate narrow corridors and obstacle-rich environments without collision.
 
-## Usage notes
-- Use the Streamlit UI to edit environment size, start/goal, robot radius, PSO parameters and obstacles. Click "Run PSO" to start optimization and watch live updates.
-- main.py runs a similar demo using matplotlib live updates (no Streamlit).
+Ideal for autonomous mobile robot (AMR) researchers, students, and developers looking for a Python-based, visualized approach to path optimization.
 
-## Tips
-- Tune PSO parameters (population size, c1/c2, inertia) to balance exploration vs. exploitation.
-- Increase resolution in the cost function for finer collision checks (tradeoff: slower evaluations).
+## ✨ Key Features
+
+-   **🧠 particle Swarm Optimization (PSO)**: Efficient global search algorithm for finding optimal control points.
+-   **📐 Cubic Spline Smoothing**: Generates kinematically feasible and smooth paths suitable for real-world robot navigation.
+-   **🖥️ Interactive Streamlit Dashboard**: A powerful web-based UI for real-time parameter tuning, environment configuration, and visual debugging.
+-   **🚧 Dynamic Environment Modeling**: Supports adjustable workspace dimensions, start/goal positions, and custom circular obstacles.
+-   **⚡ Real-time Visualization**: Live feedback of the optimization process, showing particle convergence and path evolution.
+
+## 🛠️ Installation
+
+### Prerequisites
+
+Ensure you have Python 3.8+ installed.
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/TRIBAK-Mohamed/PSO-RobotPathFinder.git
+cd PSO-RobotPathFinder
+```
+
+### 2. Install Dependencies
+
+It is recommended to use a virtual environment.
+
+```bash
+pip install -r requirements.txt
+# OR manually:
+pip install numpy matplotlib scipy streamlit
+```
+
+## 🚀 Usage
+
+### Option A: Interactive Web App (Recommended)
+
+Launch the Streamlit dashboard for a full interactive experience.
+
+```bash
+streamlit run streamlit.py
+```
+
+**Dashboard Capabilities:**
+*   **Environment Setup:** Adjust width, height, and robot radius.
+*   **Obstacle Editor:** Add, remove, or modify obstacles dynamically.
+*   **PSO Tuning:** Fine-tune `c1`, `c2`, `inertia`, and `population size` on the fly.
+*   **Visualization:** Watch the solver converge in real-time.
+
+### Option B: Desktop Demo
+
+Run the standalone Matplotlib demo for a quick test without the web interface.
+
+```bash
+python main.py
+```
+
+## 🧩 Project Architecture
+
+The codebase is modular and organized for scalability:
+
+| File/Module | Description |
+| :--- | :--- |
+| `streamlit.py` | Main entry point for the interactive web application. |
+| `pso.py` | Core implementation of the Particle Swarm Optimization algorithm. |
+| `main.py` | Lightweight desktop demo script. |
+| `path_planning/` | **Core Logic Package** |
+| ├── `solution.py` | Handles Cubic Spline generation and path interpolation. |
+| ├── `environment.py` | Defines the workspace bounds and obstacle properties. |
+| ├── `cost.py` | Computes the fitness function (Path Length + Collision Penalty). |
+| └── `plots.py` | Visualization utilities for Matplotlib. |
+
+## ⚙️ Configuration & Tuning
+
+To achieve the best results, you can tune the PSO hyperparameters:
+
+*   **Population Size**: Higher values improve search thoroughness but increase computation time.
+*   **Inertia Weight (`w`)**: Controls the momentum of particles. Higher `w` favors exploration; lower `w` favors exploitation.
+*   **Coefficients (`c1`, `c2`)**: Balance the particle's tendency to follow its own best position (`c1`) vs. the swarm's global best (`c2`).
+
+## 🤝 Contributing
+
+Contributions are welcome! Please fork the repository and submit a pull request for any enhancements or bug fixes.
+
+---
+
+<p align="center">
+  Made with ❤️ by <strong>TRIBAK Mohamed</strong><br>
+  📧 <a href="mailto:mohamedtribak912@gmail.com">mohamedtribak912@gmail.com</a>
+</p> without formatting artifacts
